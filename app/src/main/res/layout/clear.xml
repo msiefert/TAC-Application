@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#CC000000"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+    android:id="@+id/popup_clear">
+
+    <TextView
+        android:text="Room            Clear?"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:id="@+id/textView"
+        android:textAppearance="@style/NavDrawerTextStyle" />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/Room"
+        android:layout_toLeftOf="@+id/Room"
+        android:layout_toStartOf="@+id/Room" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="130"
+        android:ems="10"
+        android:id="@+id/Room"
+        android:textAppearance="@style/NavDrawerTextStyle"
+        android:autoText="false"
+        android:layout_alignBaseline="@+id/textView"
+        android:layout_alignBottom="@+id/textView"
+        android:paddingRight="0dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp"
+        android:layout_marginRight="140dp"
+        android:layout_marginLeft="140dp" />
+
+    <Button
+        android:text="Clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/clear_clear"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView"
+        android:layout_marginTop="80dp" />
+
+    <Button
+        android:text="Cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="12dp"
+        android:layout_marginEnd="12dp"
+        android:id="@+id/clear_cancel"
+        android:layout_alignBaseline="@+id/clear_clear"
+        android:layout_alignBottom="@+id/clear_clear"
+        android:layout_alignRight="@+id/textView"
+        android:layout_alignEnd="@+id/textView" />
+
+</RelativeLayout>

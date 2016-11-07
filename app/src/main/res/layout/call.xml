@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#CC000000"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+    android:id="@+id/popup_call">
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/Room"
+        android:layout_toLeftOf="@+id/Room"
+        android:layout_toStartOf="@+id/Room" />
+
+    <TextView
+        android:text="Call..."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:textAppearance="@style/NavDrawerTextStyle"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="TAC1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/TAC1"
+        android:textAppearance="@style/NavDrawerTextStyle"
+        android:width="300dp"
+        android:height="60dp"
+        android:layout_below="@+id/CandC"
+        android:layout_alignLeft="@+id/CandC"
+        android:layout_alignStart="@+id/CandC" />
+
+    <Button
+        android:text="TAC2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/TAC2"
+        android:textAppearance="@style/NavDrawerTextStyle"
+        android:width="300dp"
+        android:height="60dp"
+        android:layout_below="@+id/TAC1"
+        android:layout_alignLeft="@+id/TAC1"
+        android:layout_alignStart="@+id/TAC1" />
+
+    <Button
+        android:text="TAC3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/TAC3"
+        android:textAppearance="@style/NavDrawerTextStyle"
+        android:width="300dp"
+        android:height="60dp"
+        android:layout_below="@+id/TAC2"
+        android:layout_alignLeft="@+id/TAC2"
+        android:layout_alignStart="@+id/TAC2" />
+
+    <Button
+        android:text="Cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/TAC3"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/call_cancel" />
+
+    <Button
+        android:text="Command and Control"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/CandC"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:width="300dp"
+        android:height="60dp"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

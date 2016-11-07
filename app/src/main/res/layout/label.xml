@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#CC000000"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+    android:id="@+id/popup_label">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="160"
+        android:ems="10"
+        android:id="@+id/editText"
+        android:textAppearance="@style/NavDrawerTextStyle"
+        android:layout_alignBaseline="@+id/textView"
+        android:layout_alignBottom="@+id/textView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/textView"
+        android:layout_toEndOf="@+id/textView" />
+
+    <Button
+        android:text="Injuries"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Injuries"
+        android:textAppearance="@style/NavDrawerTextStyle"
+        android:background="#ff0000"
+        android:height="115dp"
+        android:width="115dp"
+        android:layout_alignBaseline="@+id/Danger"
+        android:layout_alignBottom="@+id/Danger"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="10dp"/>
+
+    <Button
+        android:text="Danger"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Danger"
+        android:textAppearance="@style/NavDrawerTextStyle"
+        android:textColor="#000000"
+        android:background="#ffff00"
+        android:height="115dp"
+        android:width="115dp"
+        android:layout_below="@+id/editText"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="Civilians"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Civilians"
+        android:textAppearance="@style/NavDrawerTextStyle"
+        android:background="#00ff00"
+        android:height="115dp"
+        android:width="115dp"
+        android:layout_below="@+id/editText"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="10dp"/>
+
+    <TextView
+        android:text="Label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:layout_marginLeft="11dp"
+        android:layout_marginStart="11dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/Danger"
+        android:layout_alignStart="@+id/Danger" />
+
+    <TextView
+        android:text="Location:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:textAppearance="@style/NavDrawerTextStyle"
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_below="@+id/textView2"
+        android:layout_alignRight="@+id/textView2"
+        android:layout_alignEnd="@+id/textView2" />
+
+    <Button
+        android:text="Cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:id="@+id/label_cancel"
+        android:layout_below="@+id/Civilians"
+        android:layout_alignRight="@+id/Civilians"
+        android:layout_alignEnd="@+id/Civilians" />
+
+</RelativeLayout>
