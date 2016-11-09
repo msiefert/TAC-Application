@@ -41,16 +41,22 @@ public class Drawer extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         final WebView map = (WebView) findViewById(R.id.religion);
+        final WebView top = (WebView) findViewById(R.id.top);
         map.getSettings().setBuiltInZoomControls(true);
-        map.loadUrl("file:///android_res/raw/religion"); // point it to the SVG
+        top.getSettings().setBuiltInZoomControls(true);
+        top.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+        top.getSettings().setJavaScriptEnabled(true);
+        map.loadUrl("file:///android_res/raw/religion.svg");                    // point it to the SVG
+        top.loadUrl("http://10.203.188.107:8080/");                        //point it to the server
+        top.setBackgroundColor(0x00000000);
         map.setBackgroundColor(0x00000000); // set the background to transparent
         map.scrollTo(0, 0);
 
-//        final View touchView = findViewById(R.id.top);
+        final View touchView = findViewById(R.id.religion);
 //        final TextView text = (TextView) findViewById(R.id.text);
-//        touchView.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
+        touchView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
 //                text.setText("Touch coordinates : " +
 //                        valueOf((event.getX() + map.getScrollX())/map.getScale()) + "x" +
 //                        valueOf((event.getY() + map.getScrollY())/map.getScale()));
@@ -61,9 +67,9 @@ public class Drawer extends AppCompatActivity
 //                else {
 //                    text.setText("Undefined");
 //                }
-//                return false;
-//            }
-//        });
+                return false;
+            }
+        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(

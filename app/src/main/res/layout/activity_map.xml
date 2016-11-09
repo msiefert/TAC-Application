@@ -14,24 +14,14 @@
     <WebView
         android:id="@+id/religion"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/religion">
-
-        <!--<TextView
-            android:text="WHERE IS THIS TEXT VIEW?????"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_x="10dp"
-            android:layout_y="66dp"
-            android:id="@+id/text"
-            android:textColor="@color/colorAccent"
-            tools:text="WHERE IS IT???" />-->
+        android:layout_height="match_parent">
     </WebView>
-    <RelativeLayout
+    <WebView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/top">
-    </RelativeLayout>
+    </WebView>
+
 </FrameLayout>
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
