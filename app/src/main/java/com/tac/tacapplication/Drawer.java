@@ -46,8 +46,9 @@ public class Drawer extends AppCompatActivity
         top.getSettings().setBuiltInZoomControls(true);
         top.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
         top.getSettings().setJavaScriptEnabled(true);
-        map.loadUrl("file:///android_res/raw/religion.svg");                    // point it to the SVG
-        top.loadUrl("http://10.203.188.107:8080/");                        //point it to the server
+        //map.loadUrl("file:///android_res/raw/demoss3.svg");                    // point it to the SVG
+        //top.loadUrl("http://10.203.188.107:8080/");                        //point it to the server
+        top.loadUrl("file:///android_res/raw/demoss3.svg");
         top.setBackgroundColor(0x00000000);
         map.setBackgroundColor(0x00000000); // set the background to transparent
         map.scrollTo(0, 0);

@@ -22,7 +22,7 @@ public class Map extends Activity {
         setContentView(R.layout.activity_map);
         WebView map = (WebView) findViewById(R.id.religion);
         map.getSettings().setBuiltInZoomControls(true);
-        map.loadUrl("file:///android_res/drawable/religion.png");
+        map.loadUrl("file:///android_res/drawable/demoss3.svg");
         map.scrollTo(0, 0);
     }
 }
