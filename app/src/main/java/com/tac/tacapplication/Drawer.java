@@ -21,12 +21,11 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.PopupWindow;
-import android.widget.TextView;
-
 import static com.tac.tacapplication.R.layout.label;
 import static com.tac.tacapplication.R.layout.nav;
 import static com.tac.tacapplication.R.layout.call;
 import static java.lang.String.valueOf;
+
 
 public class Drawer extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -40,18 +39,15 @@ public class Drawer extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        final WebView map = (WebView) findViewById(R.id.religion);
         final WebView top = (WebView) findViewById(R.id.top);
-        map.getSettings().setBuiltInZoomControls(true);
         top.getSettings().setBuiltInZoomControls(true);
         top.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
         top.getSettings().setJavaScriptEnabled(true);
-        //map.loadUrl("file:///android_res/raw/demoss3.svg");                    // point it to the SVG
-        //top.loadUrl("http://10.203.188.107:8080/");                        //point it to the server
-        top.loadUrl("file:///android_res/raw/demoss3.svg");
+        top.loadUrl("http://10.203.191.41:8080/");                        //point it to the server
         top.setBackgroundColor(0x00000000);
-        map.setBackgroundColor(0x00000000); // set the background to transparent
-        map.scrollTo(0, 0);
+        //map.scrollTo(0, 0);
+
+
 
         final View touchView = findViewById(R.id.religion);
 //        final TextView text = (TextView) findViewById(R.id.text);

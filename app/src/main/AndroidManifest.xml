@@ -33,4 +33,11 @@
         ></activity>
     </application>
 
+    <!--<beans android:xmlns="http://localhost:8080/"-->
+        <!--xmlns:xsi="http://localhost:8080/"-->
+        <!--xsi:schemaLocation="http://localhost:8080/">-->
+
+        <!--<bean android:id="Spring" class="com.java2novice.beans.Spring" />-->
+    <!--</beans>-->
+
 </manifest>
