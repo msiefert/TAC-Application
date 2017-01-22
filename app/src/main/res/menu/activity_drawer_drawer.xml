@@ -23,8 +23,8 @@
             android:icon="@drawable/ic_action_settings"
             android:title="@string/nav_settings"/>
         <item
-            android:id="@+id/nav_exit"
+            android:id="@+id/nav_refresh"
             android:icon="@drawable/ic_action_remove"
-            android:title="Exit" />
+            android:title="Refresh" />
     </group>
 </menu>

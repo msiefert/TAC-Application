@@ -9,10 +9,10 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     android:weightSum="1">
 
-    <ImageView
-        android:id="@+id/religion"
+    <WebView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:src="@drawable/religion"
-        android:layout_weight="0.3" />
+        android:id="@+id/menuHeader"
+        android:layout_weight=".3">
+    </WebView>
 </LinearLayout>

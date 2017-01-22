@@ -5,6 +5,7 @@ import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -20,7 +21,15 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.PopupWindow;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.InetAddress;
+import java.net.Socket;
+
 import static com.tac.tacapplication.R.layout.label;
 import static com.tac.tacapplication.R.layout.nav;
 import static com.tac.tacapplication.R.layout.call;
@@ -30,6 +39,10 @@ import static java.lang.String.valueOf;
 public class Drawer extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private PopupWindow pwindo;
+    private WebView top;
+    private EditText rEdit;
+    private EditText lEdit;
+    private EditText ipEdit;
 
     @Override
     @TargetApi(21)
@@ -39,13 +52,26 @@ public class Drawer extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        final WebView top = (WebView) findViewById(R.id.top);
+        //new Thread(new Runnable(){
+        //    public void run(){
+        //        try {
+        //            Socket mySocket = new Socket(serverAddress,8080);
+        //            Log.e("YESSSSSSS","It has worked");
+        //        }
+        //        catch (IOException e) {
+        //            Log.e("MEHHHHH", "It kinda worked");
+        //        }
+        //    }
+        //}).start();
+
+        top = (WebView) findViewById(R.id.top);
         top.getSettings().setBuiltInZoomControls(true);
         top.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
         top.getSettings().setJavaScriptEnabled(true);
-        top.loadUrl("http://10.203.191.41:8080/");                        //point it to the server
+        //top.loadUrl(getString(R.string.ip));                        //point it to the server
         top.setBackgroundColor(0x00000000);
-        //map.scrollTo(0, 0);
+
+
 
 
 
@@ -90,6 +116,8 @@ public class Drawer extends AppCompatActivity
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
+        final WebView menuPic = (WebView) findViewById(R.id.menuHeader);
+        menuPic.loadUrl(getString(R.string.ip));
         return false;
     }
 
@@ -99,6 +127,7 @@ public class Drawer extends AppCompatActivity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -132,6 +161,7 @@ public class Drawer extends AppCompatActivity
             Button Clear = (Button) layout.findViewById(R.id.clear_clear);
             Clear.setOnClickListener(Clear_button_click_listener);
 
+            rEdit = (EditText) layout.findViewById(R.id.RoomToClear);
 
 
         } else if (id == R.id.nav_navigate) {                     //If navigate is chosen from menu
@@ -168,6 +198,7 @@ public class Drawer extends AppCompatActivity
             Button Civilians = (Button) layout.findViewById(R.id.Civilians);
             Civilians.setOnClickListener(Civilians_button_click_listener);
 
+            lEdit = (EditText) layout.findViewById(R.id.RoomToLabel);
 
 
         } else if (id == R.id.nav_call) {                              //If Call is chosen from menu
@@ -197,12 +228,10 @@ public class Drawer extends AppCompatActivity
 
 
 
-        } else if (id == R.id.nav_exit) {
-            Intent homeIntent = new Intent(Intent.ACTION_MAIN);
-            homeIntent.addCategory( Intent.CATEGORY_HOME );
-            homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(homeIntent);
-            //finish();
+        } else if (id == R.id.nav_refresh) {
+            //top.loadUrl(getString(R.string.ip));                        //point it to the server
+            ipEdit = (EditText) findViewById(R.id.myip);
+            top.loadUrl("http:"+ipEdit.getText().toString()+":8080");
         }
 
         drawer.closeDrawer(GravityCompat.START);
@@ -215,9 +244,10 @@ public class Drawer extends AppCompatActivity
             pwindo.dismiss();
         }
     };
-    private View.OnClickListener Clear_button_click_listener = new View.OnClickListener() {
+    private View.OnClickListener Clear_button_click_listener = new View.OnClickListener() {     //sanitize inputs
         public void onClick(View v) {
-            // TODO: 11/5/2016 Tell server room is clear 
+            top.loadUrl("javascript: sendChangeColor(\"" + rEdit.getText().toString() + "\",\"green\")");
+            pwindo.dismiss();
         }
     };
     private View.OnClickListener Go_button_click_listener = new View.OnClickListener() {
@@ -227,7 +257,8 @@ public class Drawer extends AppCompatActivity
     };
     private View.OnClickListener Injuries_button_click_listener = new View.OnClickListener() {
         public void onClick(View v) {
-            // TODO: 11/6/2016 Place injured label, report injuries
+            top.loadUrl("javascript: sendLabel(\"" + lEdit.getText().toString() + "\",\"Injuries\")");
+            pwindo.dismiss();
         }
     };
     private View.OnClickListener Civilians_button_click_listener = new View.OnClickListener() {
