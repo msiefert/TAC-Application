@@ -24,7 +24,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Map" />
         <activity
             android:name=".Drawer"
             android:label="@string/title_activity_drawer"
@@ -32,12 +31,5 @@
             android:screenOrientation="landscape"
         ></activity>
     </application>
-
-    <!--<beans android:xmlns="http://localhost:8080/"-->
-        <!--xmlns:xsi="http://localhost:8080/"-->
-        <!--xsi:schemaLocation="http://localhost:8080/">-->
-
-        <!--<bean android:id="Spring" class="com.java2novice.beans.Spring" />-->
-    <!--</beans>-->
 
 </manifest>
