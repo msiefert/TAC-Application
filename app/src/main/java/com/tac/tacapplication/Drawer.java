@@ -3,9 +3,7 @@ package com.tac.tacapplication;
 import android.annotation.TargetApi;
 import android.app.FragmentManager;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -26,16 +24,14 @@ import android.widget.PopupWindow;
 import static com.tac.tacapplication.R.layout.label;
 import static com.tac.tacapplication.R.layout.nav;
 import static com.tac.tacapplication.R.layout.call;
-import static java.lang.String.valueOf;
 
 
 public class Drawer extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private PopupWindow pwindo;
-    private WebView top;
+    private WebView floor;
     private EditText rEdit;
     private EditText lEdit;
-    private EditText ipEdit;
 
     @Override
     @TargetApi(21)
@@ -57,22 +53,22 @@ public class Drawer extends AppCompatActivity
         //    }
         //}).start();
 
-        top = (WebView) findViewById(R.id.top);
-        top.getSettings().setBuiltInZoomControls(true);
-        top.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
-        top.getSettings().setJavaScriptEnabled(true);
-        //top.loadUrl(getString(R.string.ip));                        //point it to the server
-        top.setBackgroundColor(0x00000000);
+        floor = (WebView) findViewById(R.id.floor); //floor is the webview displaying the floor plan
+        floor.getSettings().setBuiltInZoomControls(true);
+        floor.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+        floor.getSettings().setJavaScriptEnabled(true);
+        floor.loadUrl(getString(R.string.ip));                        //point it to the server
+        floor.setBackgroundColor(0x00000000);                         //allows floor plan to be seen
 
 
 
 
 
-        final View touchView = findViewById(R.id.religion);
+//        final View touchView = findViewById(R.id.religion); can intercept touches, obsolete
 //        final TextView text = (TextView) findViewById(R.id.text);
-        touchView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
+//        touchView.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
 //                text.setText("Touch coordinates : " +
 //                        valueOf((event.getX() + map.getScrollX())/map.getScale()) + "x" +
 //                        valueOf((event.getY() + map.getScrollY())/map.getScale()));
@@ -83,9 +79,9 @@ public class Drawer extends AppCompatActivity
 //                else {
 //                    text.setText("Undefined");
 //                }
-                return false;
-            }
-        });
+//                return false;
+//            }
+//        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -109,8 +105,8 @@ public class Drawer extends AppCompatActivity
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        final WebView menuPic = (WebView) findViewById(R.id.menuHeader);
-        menuPic.loadUrl(getString(R.string.ip));
+        final WebView menuPic = (WebView) findViewById(R.id.menuHeader);      //icon at top of menu
+        menuPic.loadUrl(getString(R.string.ip));                    //points it to the server
         return false;
     }
 
@@ -153,7 +149,7 @@ public class Drawer extends AppCompatActivity
             
             Button Clear = (Button) layout.findViewById(R.id.clear_clear);
             Clear.setOnClickListener(Clear_button_click_listener);
-
+                                                     //Tracks text entered into Clear's room field
             rEdit = (EditText) layout.findViewById(R.id.RoomToClear);
 
 
@@ -190,18 +186,18 @@ public class Drawer extends AppCompatActivity
 
             Button Civilians = (Button) layout.findViewById(R.id.Civilians);
             Civilians.setOnClickListener(Civilians_button_click_listener);
-
+                                                    //Tracks text entered into label's room field
             lEdit = (EditText) layout.findViewById(R.id.RoomToLabel);
 
 
         } else if (id == R.id.nav_call) {                              //If Call is chosen from menu
-            View layout = inflater.inflate(call,                       //Create the popup for label
+            View layout = inflater.inflate(call,                       //Create the popup for call
                     (ViewGroup) findViewById(R.id.popup_call));
             pwindo = new PopupWindow(layout, 1100, 850, true);
             pwindo.showAtLocation(layout, Gravity.CENTER, 0, 0);
 
 
-            //Create Buttons and assign listeners
+                                                             //Create Buttons and assign listeners
             Button cancel = (Button) layout.findViewById(R.id.call_cancel);
             cancel.setOnClickListener(cancel_button_click_listener);
 
@@ -221,47 +217,48 @@ public class Drawer extends AppCompatActivity
 
 
 
-        } else if (id == R.id.nav_refresh) {
-            //top.loadUrl(getString(R.string.ip));                        //point it to the server
-            ipEdit = (EditText) findViewById(R.id.myip);
-            top.loadUrl("http:"+ipEdit.getText().toString()+":8080");
+        } else if (id == R.id.nav_refresh) {                //important if map ever disconnects
+            floor.loadUrl(getString(R.string.ip));                   //point it to the server
         }
 
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
     
-    // Button click handling methods
+                                                                // Button click handling methods
     private View.OnClickListener cancel_button_click_listener = new View.OnClickListener() {
-        public void onClick(View v) {
+        public void onClick(View v) { //closes popup upon cancel
             pwindo.dismiss();
         }
     };
     private View.OnClickListener Clear_button_click_listener = new View.OnClickListener() {     //sanitize inputs
-        public void onClick(View v) {
-            top.loadUrl("javascript: sendChangeColor(\"" + rEdit.getText().toString() + "\",\"green\")");
+        public void onClick(View v) {   //sends room clear message to server and dismisses popup
+            floor.loadUrl("javascript: sendChangeColor(\"" + rEdit.getText().toString() + "\",\"green\")");
             pwindo.dismiss();
         }
     };
     private View.OnClickListener Go_button_click_listener = new View.OnClickListener() {
         public void onClick(View v) {
-            // TODO: 11/5/2016 Calculate and display directions 
-        }
-    };
-    private View.OnClickListener Injuries_button_click_listener = new View.OnClickListener() {
-        public void onClick(View v) {
-            top.loadUrl("javascript: sendLabel(\"" + lEdit.getText().toString() + "\",\"Injuries\")");
+            // TODO: 11/5/2016 Calculate and display directions
             pwindo.dismiss();
         }
     };
-    private View.OnClickListener Civilians_button_click_listener = new View.OnClickListener() {
-        public void onClick(View v) {
-            // TODO: 11/6/2016 Place civilian label, report civilians
+    private View.OnClickListener Injuries_button_click_listener = new View.OnClickListener() {
+        public void onClick(View v) {   //sends injury label message to server then dismisses popup
+            floor.loadUrl("javascript: sendLabel(\"" + lEdit.getText().toString() + "\",\"Injuries\")");
+            pwindo.dismiss();
         }
     };
-    private View.OnClickListener Danger_button_click_listener = new View.OnClickListener() {
+    private View.OnClickListener Civilians_button_click_listener = new View.OnClickListener() { //sends civilian label message to server then dismisses popup
         public void onClick(View v) {
-            // TODO: 11/6/2016 Place danger label, report danger
+            floor.loadUrl("javascript: sendLabel(\"" + lEdit.getText().toString() + "\",\"Civilians\")");
+            pwindo.dismiss();
+        }
+    };
+    private View.OnClickListener Danger_button_click_listener = new View.OnClickListener() {    //sends danger label message to server then dismisses popup
+        public void onClick(View v) {
+            floor.loadUrl("javascript: sendLabel(\"" + lEdit.getText().toString() + "\",\"Danger\")");
+            pwindo.dismiss();
         }
     };
     private View.OnClickListener TAC1_button_click_listener = new View.OnClickListener() {
