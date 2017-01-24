@@ -32,11 +32,13 @@ public class Drawer extends AppCompatActivity
     private WebView floor;
     private EditText rEdit;
     private EditText lEdit;
+    private boolean first = true;
 
     @Override
     @TargetApi(21)
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_drawer);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -59,6 +61,7 @@ public class Drawer extends AppCompatActivity
         floor.getSettings().setJavaScriptEnabled(true);
         floor.loadUrl(getString(R.string.ip));                        //point it to the server
         floor.setBackgroundColor(0x00000000);                         //allows floor plan to be seen
+
 
 
 
@@ -106,6 +109,7 @@ public class Drawer extends AppCompatActivity
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         final WebView menuPic = (WebView) findViewById(R.id.menuHeader);      //icon at top of menu
+        menuPic.getSettings().setJavaScriptEnabled(true);
         menuPic.loadUrl(getString(R.string.ip));                    //points it to the server
         return false;
     }

@@ -25,13 +25,4 @@
         android:minHeight="?attr/actionBarSize"
         android:id="@+id/toolbar" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="@string/ip"
-        android:ems="10"
-        android:id="@+id/myip"
-        android:layout_marginLeft="180dp"/>
-
 </android.support.design.widget.CoordinatorLayout>
